@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
+import static specs.BaseSpec.baseRequestSpec;
 import static specs.login.LoginSpec.*;
 
 public class LoginTests extends TestBase {
@@ -19,6 +20,7 @@ public class LoginTests extends TestBase {
 
         SuccessfulLoginResponseModel loginResponse = step(
                 "Авторизация с валидными данными и проверка ответа (200)", () ->
+                        given(baseRequestSpec)
                                 .body(loginData)
                                 .when()
                                 .post("/auth/token/")
@@ -40,6 +42,7 @@ public class LoginTests extends TestBase {
 
         WrongCredentialsLoginResponseModel loginResponse = step(
                 "Авторизация с неверным паролем и проверка ответа (401)", () ->
+                        given(baseRequestSpec)
                                 .body(loginData)
                                 .when()
                                 .post("/auth/token/")
@@ -59,6 +62,7 @@ public class LoginTests extends TestBase {
 
         WrongCredentialsLoginResponseModel loginResponse = step(
                 "Авторизация с неверным логином и проверка ответа (401)", () ->
+                        given(baseRequestSpec)
                                 .body(loginData)
                                 .when()
                                 .post("/auth/token/")
@@ -78,6 +82,7 @@ public class LoginTests extends TestBase {
 
         BlankCredentialsLoginResponseModel loginResponse = step(
                 "Авторизация с пустыми полями и проверка ответа (400)", () ->
+                        given(baseRequestSpec)
                                 .body(loginData)
                                 .when()
                                 .post("/auth/token/")

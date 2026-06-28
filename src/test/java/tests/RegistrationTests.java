@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
+import static specs.BaseSpec.baseRequestSpec;
 import static specs.registration.RegistrationSpec.*;
 
 public class RegistrationTests extends TestBase {
@@ -29,6 +30,7 @@ public class RegistrationTests extends TestBase {
 
         SuccessfulRegistrationResponseModel registrationResponse = step(
                 "Регистрация нового пользователя и проверка ответа (201)", () ->
+                        given(baseRequestSpec)
                                 .body(registrationData)
                                 .when()
                                 .post("/users/register/")
@@ -54,6 +56,7 @@ public class RegistrationTests extends TestBase {
 
         SuccessfulRegistrationResponseModel firstRegistrationResponse = step(
                 "Первая регистрация пользователя", () ->
+                        given(baseRequestSpec)
                                 .body(registrationData)
                                 .when()
                                 .post("/users/register/")
@@ -69,6 +72,7 @@ public class RegistrationTests extends TestBase {
 
         ExistingUserResponseModel secondRegistrationResponse = step(
                 "Повторная регистрация с тем же username и проверка ответа (400)", () ->
+                        given(baseRequestSpec)
                                 .body(registrationData)
                                 .when()
                                 .post("/users/register/")
@@ -89,6 +93,7 @@ public class RegistrationTests extends TestBase {
 
         ExistingUserResponseModel registrationResponse = step(
                 "Регистрация с пустым username и проверка ответа (400)", () ->
+                        given(baseRequestSpec)
                                 .body(registrationData)
                                 .when()
                                 .post("/users/register/")
@@ -109,6 +114,7 @@ public class RegistrationTests extends TestBase {
 
         BlankPasswordRegistrationResponseModel registrationResponse = step(
                 "Регистрация с пустым password и проверка ответа (400)", () ->
+                        given(baseRequestSpec)
                                 .body(registrationData)
                                 .when()
                                 .post("/users/register/")

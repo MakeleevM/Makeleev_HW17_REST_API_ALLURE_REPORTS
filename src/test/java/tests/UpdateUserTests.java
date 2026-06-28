@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
+import static specs.BaseSpec.baseRequestSpec;
 import static specs.login.LoginSpec.successfulLoginResponseSpec;
 import static specs.registration.RegistrationSpec.successfulRegistrationResponseSpec;
 import static specs.updateuser.UpdateUserSpec.*;
@@ -35,6 +36,7 @@ public class UpdateUserTests extends TestBase {
         RegistrationBodyModel registrationData = new RegistrationBodyModel(username, password);
 
         step("Регистрация пользователя для теста", () ->
+                given(baseRequestSpec)
                         .body(registrationData)
                         .when()
                         .post("/users/register/")
@@ -45,6 +47,7 @@ public class UpdateUserTests extends TestBase {
         LoginBodyModel loginData = new LoginBodyModel(username, password);
 
         SuccessfulLoginResponseModel loginResponse = step("Авторизация и получение access-токена", () ->
+                given(baseRequestSpec)
                         .body(loginData)
                         .when()
                         .post("/auth/token/")
@@ -171,6 +174,7 @@ public class UpdateUserTests extends TestBase {
 
         UnauthorizedUpdateUserResponseModel updateResponse = step(
                 "PUT-обновление без авторизации и проверка ответа (401)", () ->
+                        given(baseRequestSpec)
                                 .body(updateData)
                                 .when()
                                 .put("/users/me/")
@@ -191,6 +195,7 @@ public class UpdateUserTests extends TestBase {
 
         UnauthorizedUpdateUserResponseModel updateResponse = step(
                 "PATCH-обновление без авторизации и проверка ответа (401)", () ->
+                        given(baseRequestSpec)
                                 .body(updateData)
                                 .when()
                                 .patch("/users/me/")
