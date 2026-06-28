@@ -29,7 +29,6 @@ public class RegistrationTests extends TestBase {
 
         SuccessfulRegistrationResponseModel registrationResponse = step(
                 "Регистрация нового пользователя и проверка ответа (201)", () ->
-                        given(registrationRequestSpec)
                                 .body(registrationData)
                                 .when()
                                 .post("/users/register/")
@@ -55,7 +54,6 @@ public class RegistrationTests extends TestBase {
 
         SuccessfulRegistrationResponseModel firstRegistrationResponse = step(
                 "Первая регистрация пользователя", () ->
-                        given(registrationRequestSpec)
                                 .body(registrationData)
                                 .when()
                                 .post("/users/register/")
@@ -71,7 +69,6 @@ public class RegistrationTests extends TestBase {
 
         ExistingUserResponseModel secondRegistrationResponse = step(
                 "Повторная регистрация с тем же username и проверка ответа (400)", () ->
-                        given(registrationRequestSpec)
                                 .body(registrationData)
                                 .when()
                                 .post("/users/register/")
@@ -92,7 +89,6 @@ public class RegistrationTests extends TestBase {
 
         ExistingUserResponseModel registrationResponse = step(
                 "Регистрация с пустым username и проверка ответа (400)", () ->
-                        given(registrationRequestSpec)
                                 .body(registrationData)
                                 .when()
                                 .post("/users/register/")
@@ -113,7 +109,6 @@ public class RegistrationTests extends TestBase {
 
         BlankPasswordRegistrationResponseModel registrationResponse = step(
                 "Регистрация с пустым password и проверка ответа (400)", () ->
-                        given(registrationRequestSpec)
                                 .body(registrationData)
                                 .when()
                                 .post("/users/register/")

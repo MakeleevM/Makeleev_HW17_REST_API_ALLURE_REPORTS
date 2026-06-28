@@ -19,7 +19,6 @@ public class LoginTests extends TestBase {
 
         SuccessfulLoginResponseModel loginResponse = step(
                 "Авторизация с валидными данными и проверка ответа (200)", () ->
-                        given(loginRequestSpec)
                                 .body(loginData)
                                 .when()
                                 .post("/auth/token/")
@@ -41,7 +40,6 @@ public class LoginTests extends TestBase {
 
         WrongCredentialsLoginResponseModel loginResponse = step(
                 "Авторизация с неверным паролем и проверка ответа (401)", () ->
-                        given(loginRequestSpec)
                                 .body(loginData)
                                 .when()
                                 .post("/auth/token/")
@@ -61,7 +59,6 @@ public class LoginTests extends TestBase {
 
         WrongCredentialsLoginResponseModel loginResponse = step(
                 "Авторизация с неверным логином и проверка ответа (401)", () ->
-                        given(loginRequestSpec)
                                 .body(loginData)
                                 .when()
                                 .post("/auth/token/")
@@ -81,7 +78,6 @@ public class LoginTests extends TestBase {
 
         BlankCredentialsLoginResponseModel loginResponse = step(
                 "Авторизация с пустыми полями и проверка ответа (400)", () ->
-                        given(loginRequestSpec)
                                 .body(loginData)
                                 .when()
                                 .post("/auth/token/")

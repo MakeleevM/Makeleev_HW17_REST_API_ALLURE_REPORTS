@@ -13,8 +13,6 @@ import static specs.BaseSpec.baseRequestSpec;
 
 public class UpdateUserSpec extends BaseSpec {
 
-    public static RequestSpecification updateUserRequestSpec = baseRequestSpec;
-
     public static RequestSpecification authenticatedUpdateUserRequestSpec(String accessToken) {
         return with()
                 .spec(baseRequestSpec)
